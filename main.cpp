@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-    Lista list = new Lista();
+    Lista* list = new Lista();
     int opcion;
 	do{
 		cout<<"Bienvenido al Menu de Opciones"<<endl;
@@ -45,8 +45,13 @@ int main() {
 
                 Seleccion* s = new Seleccion(nombre_sele,max_goleador,partidos_g,partidos_p,partidos_e,
                 golesAnotados, goles_anotados_max_goleador); 
-
+                cout<<"hola"<<endl;
                 Nodo* n = new Nodo(s,NULL);
+                cout<<"hola2"<<endl;
+
+                list -> agregar(n);
+                cout<<"hola3"<<endl;
+
             }
 
 				
@@ -58,7 +63,8 @@ int main() {
 				
 				break;
             case 4:
-				
+                list -> listar();
+
 				break;
 
             case 5:

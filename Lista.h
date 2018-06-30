@@ -1,5 +1,6 @@
 #ifndef LISTA_H
 #define LISTA_H
+#include "Nodo.h"
 
 class Lista {
     private:
@@ -7,5 +8,7 @@ class Lista {
             int pos;
     public:
             Lista();
+            void agregar(Nodo*);
+            void listar();          
 };
 #endif
