@@ -1,6 +1,8 @@
 #ifndef SELECCION_H
 #define SELECCION_H
 #include <string>
+#include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -35,5 +37,12 @@ class Seleccion {
             void setPartidosE(int);
             void setGolesAnotados(int);
             void setGolesAnotadosMaxGoleador(int);
+
+            void write(ofstream&);
+            void read(ifstream&);
+
+            friend ostream& operator<<(ostream&,const Seleccion&);
+
+            friend istream& operator>>(istream&, Seleccion&);
 };
 #endif

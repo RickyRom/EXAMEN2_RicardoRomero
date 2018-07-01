@@ -2,6 +2,8 @@
 #include "Nodo.h"
 #include "Seleccion.h"
 #include "Lista.h"
+#include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -52,6 +54,26 @@ int main() {
                 list -> agregar(n);
                 cout<<"hola3"<<endl;
 
+
+                ofstream salida ("selecciones.txt", ios::app);
+                salida<<*s;
+                salida.close();
+
+                //escribir archvio binario
+                ofstream binario("alumnos.dat",ios::binary | ios::app);
+                s -> write(binario);
+                binario.close();
+
+                //leer archivo binario
+                ifstream readBinary("selecciones.dat",ios::binary);
+
+                Seleccion otraSeleccion;
+                otraSeleccion.read(readBinary);
+                readBinary.close();
+                cout<<otraSeleccion<<endl;
+
+                delete s;
+
             }
 
 				
@@ -67,9 +89,11 @@ int main() {
 
 				break;
 
-            case 5:
+            case 5:{
+               
 				
 				break;
+            }
 			case 6:
 				cout<<"Tenga Buen Dia"<<endl;
 				break;	

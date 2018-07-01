@@ -1,4 +1,7 @@
 #include "Seleccion.h"
+#include <string>
+#include <fstream>
+#include <iostream>
 
 Seleccion::Seleccion() {
 
@@ -72,4 +75,54 @@ void Seleccion::setGolesAnotados(int ga) {
 
 void Seleccion::setGolesAnotadosMaxGoleador(int gamg) {
     goles_anotados_max_goleador = gamg;
+}
+
+
+void Seleccion::read(ifstream& in){
+  int size; 
+  in.read(reinterpret_cast<char*>(&size),sizeof(int));
+  //buffer de nombre
+  char nameBuffer[size];
+  in.read(nameBuffer,size);
+  
+  nombre_sele=nameBuffer;
+}
+
+void Seleccion::write(ofstream& out){
+
+  //nombre
+  int size=nombre_sele.size();
+   out.write(reinterpret_cast<char*>(&size),sizeof(int));
+   out.write(nombre_sele.data(),nombre_sele.size());
+}
+
+istream& operator>>(istream& in, Seleccion& selec){
+  string buffer;
+  //leer una línea del archivo
+  getline(in,buffer);
+  string parse="";
+  int cont=0; 
+  for(int i = 0; i<buffer.size();i++){
+    if(buffer[i]!=',')
+      parse+=buffer[i];
+    else{
+      
+      switch(cont){
+        case 0:
+          selec.nombre_sele = parse;
+           break;
+      }
+      cont++;
+    }
+  }
+
+  return in;
+}
+
+
+ostream& operator<<(ostream& out, const Seleccion& selec){
+
+   out<<selec.nombre_sele<<endl;;
+   return out;
+
 }
